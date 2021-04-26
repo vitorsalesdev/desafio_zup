@@ -34,7 +34,6 @@ public class Usuario {
 	@CPF
 	private String cpf;
 	
-	//@NotEmpty
 	@JsonFormat(pattern = "dd/mm/yyyy")
 	private Date dataNascimento;
 
