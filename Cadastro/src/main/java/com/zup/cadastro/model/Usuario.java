@@ -33,7 +33,7 @@ public class Usuario {
 	@Column(unique=true)
 	@CPF
 	private String cpf;
-	
+
 	@JsonFormat(pattern = "dd/mm/yyyy")
 	private Date dataNascimento;
 

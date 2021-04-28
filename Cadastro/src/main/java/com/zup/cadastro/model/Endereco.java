@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "cadastroEndereco")
 public class Endereco {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

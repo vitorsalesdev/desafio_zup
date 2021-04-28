@@ -1,5 +1,6 @@
 package com.zup.cadastro.controller;
 
+import com.zup.cadastro.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +21,15 @@ import com.zup.cadastro.repository.UsuarioRepository;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
+	private UsuarioService usuarioService;
+
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario){
-		try {
-			usuarioRepository.save(usuario);
-		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
-		return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+		return usuarioService.cadastrarUsuario(usuario);
 	}
+
 	@GetMapping("/listarEnderecos/{usuarioEmail}")
 	public ResponseEntity<?> buscarPorEmail(@PathVariable String usuarioEmail) {
-		try {
-			usuarioRepository.findByEmail(usuarioEmail).orElseThrow();
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body("Não há usuário cadastrado com o e-mail informado");
-		}
-		return ResponseEntity.ok(usuarioRepository.findByEmail(usuarioEmail));
+		return usuarioService.buscarPorEmail(usuarioEmail);
 	}
 }
